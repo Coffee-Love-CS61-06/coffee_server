@@ -16,9 +16,13 @@ class_names = ['Dark', 'Green', 'Light', 'Medium']
 model.make_predict_function()
 
 
+@mod.route('/upload')
+def home():
+    return render_template('image_predict.html')
+
 # assign URLs to have a particular route
-@mod.route("/", methods=['post', 'get'])
-def index():
+@mod.route("/register", methods=['post', 'get'])
+def register():
     message = ''
     # if method post in index
     if "email" in session:

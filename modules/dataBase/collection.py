@@ -27,17 +27,17 @@ image_details = image_db.imageData
 #         "password": hashed,
 #     })
 #
-# def addNewImage(i_name,class_name,score,time,url):
-#     image_details.insert({
-#         "file_name":i_name,
-#         "class":class_name,
-#         "score":score,
-#         "upload_time":time,
-#         "url":url
-#     })
 
-# def getAllImages():
-#     image_data = image_details.find()
-#     return image_data
+def addNewImage(i_name, class_name, score, time, url):
+    image_details.insert({
+        "file_name": i_name,
+        "class": class_name,
+        "score": score,
+        "upload_time": time,
+        "url": url
+    })
 
 
+def getAllImages():
+    image_data = image_details.find()
+    return image_data
