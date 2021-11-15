@@ -20,8 +20,9 @@ model.make_predict_function()
 def home():
     return render_template('image_predict.html')
 
+
 # assign URLs to have a particular route
-@mod.route("/register", methods=['post', 'get'])
+@mod.route("/", methods=['post', 'get'])
 def register():
     message = ''
     # if method post in index
@@ -57,6 +58,7 @@ def register():
             new_email = user_data['email']
             # if registered redirect to logged in as the registered user
             return render_template('logged_in.html', email=new_email)
+
     return render_template('index.html')
 
 
@@ -110,6 +112,7 @@ def logout():
 
 @mod.route('/predict', methods=['POST'])
 def predict():
+    user_name = session.get('email')
     if request.method == 'POST':
         # check if the post request has the file part
         if 'file' not in request.files:
@@ -119,7 +122,7 @@ def predict():
         if user_file.filename == '':
             return "file name not found ..."
 
-        else:
+        elif user_name:
             path = os.path.join(os.getcwd() + '\\modules\\static\\' + user_file.filename)
             user_file.save(path)
 
@@ -156,13 +159,13 @@ def predict():
                 class_name,
                 str(round(score, 2)),
                 datetime.now(),
-                UPLOAD_URL + user_file.filename)
-
+                UPLOAD_URL + user_file.filename,
+                user_name
+            )
             return jsonify({
                 "status": "success",
                 "class": class_name,
                 "score": str(round(score, 2)),
-                "upload_time": datetime.now()
-            })
-
-
+                "upload_time": datetime.now(),
+                "user_name": user_name
+            }), user_name

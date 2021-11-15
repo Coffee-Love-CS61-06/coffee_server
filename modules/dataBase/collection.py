@@ -28,13 +28,14 @@ image_details = image_db.imageData
 #     })
 #
 
-def addNewImage(i_name, class_name, score, time, url):
+def addNewImage(i_name, class_name, score, time, url, name):
     image_details.insert({
         "file_name": i_name,
         "class": class_name,
         "score": score,
         "upload_time": time,
-        "url": url
+        "url": url,
+        "user_name": name
     })
 
 

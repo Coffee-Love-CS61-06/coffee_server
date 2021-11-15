@@ -3,5 +3,13 @@
 
 {% block content %}
 <p>Hello You have Logged in as {{ email }}</p>
+<html>
+    <body>
+        <form method="POST" action="/predict" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <input type="submit">
 
+        </form>
+    </body>
+</html>
 {% endblock %}
