@@ -22,7 +22,7 @@ def index():
     message = ''
     # if method post in index
     if "email" in session:
-        return redirect(url_for("logged_in"))
+        return redirect(url_for("backend.logged_in"))
     if request.method == "POST":
         user = request.form.get("fullname")
         email = request.form.get("email")
@@ -60,7 +60,7 @@ def index():
 def login():
     message = 'Please login to your account'
     if "email" in session:
-        return redirect(url_for("logged_in"))
+        return redirect(url_for("backend.logged_in"))
 
     if request.method == "POST":
         email = request.form.get("email")
@@ -74,10 +74,10 @@ def login():
             # encode the password and check if it matches
             if bcrypt.checkpw(password.encode('utf-8'), passwordcheck):
                 session["email"] = email_val
-                return redirect(url_for('logged_in'))
+                return redirect(url_for('backend.logged_in'))
             else:
                 if "email" in session:
-                    return redirect(url_for("logged_in"))
+                    return redirect(url_for("backend.logged_in"))
                 message = 'Wrong password'
                 return render_template('login.html', message=message)
         else:
