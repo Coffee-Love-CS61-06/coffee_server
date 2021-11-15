@@ -1,4 +1,4 @@
-from flask import  Blueprint
+from flask import Blueprint
 from modules.dataBase import collection as db
 from bson.json_util import dumps
 
